@@ -1,25 +1,19 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import FileDrop from 'react-file-drop'
 
 class App extends Component {
+  handleDrop = (files:FileList, event: React.DragEvent<HTMLDivElement>) => {
+    console.log('handleDrop!', files, event);
+    return files;
+  }
+
   render() {
+    const styles = { border: '1px solid black', width: 600, color: 'black', padding: 20 };
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.tsx</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+      <div id="react-file-drop-demo" style={styles}>
+        <FileDrop onDrop={this.handleDrop}>
+          Drop some files here!
+        </FileDrop>
       </div>
     );
   }
